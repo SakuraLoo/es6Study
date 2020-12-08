@@ -7,9 +7,13 @@
       <title></title>
   </head>
   <body>
+    <input type="button" value="1">
+    <input type="button" value="2">
+    <input type="button" value="3">
+
     <script>
       /**
-       * 总结: {} 内外无关
+       * 总结: let/const {} 内外无关
       */
 
       /*-- 1.外层 获取不到 内层 --*/
@@ -17,14 +21,14 @@
         {
           let a = 1;
         }
-        console.log(a) // Uncaught ReferenceError: a is not defined
+        console.log(a) // 获取不到
       }
 
       // 实例: if
       if(true) {
         let a = 1;
       }
-      console.log(a)
+      console.log(a)  // 获取不到
 
 
       /*-- 2.内外 声明 互不干扰 --*/
@@ -35,6 +39,28 @@
         }
         let a = 2;
         console.log(a) // 2
+      }
+
+      /*-- 3.实例: 闭包问题 --*/
+      // Q: 打印出来全部是3
+      // A: 立即函数 (function(i) {} (i))
+
+      // 原生:
+      var _btn = document.getElementsByTagName("input");
+      for(var i=0;i<_btn.length;i++) {
+        (function(i) {
+          _btn[i].onclick = function() {
+            console.log(i)
+          }
+        })(i)
+      }
+
+      // ES6 let
+      var _btn = document.getElementsByTagName("input");
+      for(let i=0;i<_btn.length;i++) {
+        _btn.onclick = function() {
+          console.log(i)
+        }
       }
 
     </script>
