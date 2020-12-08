@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+      <title></title>
+  </head>
+  <body>
+    <script>
+      /**
+       * 总结: {} 内外无关
+      */
+
+      /*-- 1.外层 获取不到 内层 --*/
+      {
+        {
+          let a = 1;
+        }
+        console.log(a) // Uncaught ReferenceError: a is not defined
+      }
+
+      // 实例: if
+      if(true) {
+        let a = 1;
+      }
+      console.log(a)
+
+
+      /*-- 2.内外 声明 互不干扰 --*/
+      {
+        {
+          let a = 1;
+          console.log(a) // 1
+        }
+        let a = 2;
+        console.log(a) // 2
+      }
+
+    </script>
+  </body>
+</html>
