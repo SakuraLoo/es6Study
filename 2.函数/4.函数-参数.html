@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+      <title></title>
+  </head>
+  <body>
+    <script>
+
+      /**
+       * 1.参数扩展:
+       *  - function Show(a, b, ...args) {}
+       *  - 收集剩余的参数。必须是最后一个。
+       * 2.展开数组
+       *  - Show(..arr);
+       *  - 展开后的效果，跟直接把数组的内容写在这一样。
+      */
+
+      /*-- 1.参数扩展 --*/
+      function Show1(a, b, ...args) {
+        console.log(a) // 1
+        console.log(b) // 2
+        console.log(args) // [3,4,5]
+      }
+      Show1(1,2, 3,4,5);
+
+      
+      /*-- 2.展开数组 --*/
+      let arr1 = [1,2,3];
+      Show2(...arr1);
+      function Show2(a,b,c) {
+        console.log(a) // 1
+        console.log(b) // 2
+        console.log(c) // 3
+      }
+
+      // 参数 ...
+      function Show3 (...args) {
+        Fn(...args); // 1 2
+      }
+      function Fn(a,b) {
+        console.log(a+b) // 3
+      }
+      Show3(1,2);
+
+      // 修改默认参数
+      function Show4 (a, b=2, c=3) {
+        console.log(a,b,c) // 4 5 6
+      }
+      Show4(4,5,6);
+
+    </script>
+  </body>
+</html>
