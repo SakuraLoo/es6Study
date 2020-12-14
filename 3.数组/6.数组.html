@@ -9,6 +9,83 @@
   <body>
     <script>
       
+      /*-- reduce --*/
+      // 语法实现
+      // total    必需。初始值, 或者计算结束后的返回值。
+      // currentValue    必需。当前元素
+      // currentIndex    可选。当前元素的索引
+      // arr    可选。当前元素所属的数组对象。
+
+      // 4个参数
+      let arr1 = [1,2,3,4];
+      arr1.reduce((prev, cur, index, arr) => {
+        // 累计值, 当前元素, 当前索引, 原数组
+        // 1 2 1 [1, 2, 3, 4]
+        // undefined 3 2 [1, 2, 3, 4]
+        // undefined 4 3 [1, 2, 3, 4]
+        console.log(prev, cur, index, arr);
+      })
+
+      // 累加
+      let arr2 = [1, 2, 3, 4, 5, 6];
+      let sum = arr2.reduce((prev, cur) => {
+        return prev + cur;
+      }, 1);
+      console.log(sum) // 22
+
+      //二维数组转换为一维数组
+      let arr3 = [
+          [1,2,3],
+          [4,5,6]
+      ]
+      let arr4 = arr3.reduce((prev,cur,index) => {
+          return prev.concat(cur);
+      })
+      console.log(arr4) // [1, 2, 3, 4, 5, 6]
+
+      // 平均值
+      let arr5 = [1,2,3,4];
+      let arr6 = arr5.reduce((prev,cur,index) => {
+        if(index != arr5.length - 1) {
+          return prev + cur;
+        } else {
+          return (prev + cur) / arr5.length;
+        }
+      })
+      console.log(arr6) // 2.5
+      
+      /*-- forEach --*/
+      let arr7 = [1,2,3,4];
+      arr7.forEach((item,index) => {
+        // 0：1
+        // 1：2
+        // 2：3
+        // 3：4
+        console.log(index+'：'+item)
+      })
+
+      /*-- filters --*/
+      let arr8 = [1,2,3,4];
+      let arr9 = arr8.filter(item => item > 2);
+      console.log(arr9) // [3, 4]
+
+      /*-- Map --*/
+      let arr10 = [1,2,3,4];
+      let arr11 = arr10.map(item => 
+        item * 2
+      )
+      console.log(arr11) // [2,4,6,8]
+
+      // 打印 false。 Map 对象构造函数生成实例，迭代出新的对象。
+      var myMap1 = new Map([["key1", "value1"], ["key2", "value2"]]);
+      var myMap2 = new Map(myMap1);
+      console.log(myMap2 === myMap1); // false
+
+      // 合并两个 Map 对象时，如果有重复的键值，则后面的会覆盖前面的，对应值即 uno，dos， three
+      var first = new Map([[1, 'one'], [2, 'two'], [3, 'three'],]);
+      var second = new Map([[1, 'uno'], [2, 'dos']]);
+      var merged = new Map([...first, ...second]);
+      console.log(merged) // {1 => "uno", 2 => "dos", 3 => "three"}
 
     </script>
   </body>
