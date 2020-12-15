@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+      <title></title>
+  </head>
+  <body>
+    <script>
+
+      // yield: 传参
+      function *Show() {
+        console.log("a");
+
+        let a = yield;
+
+        console.log(a) // 2
+      }
+      let aaa = Show();
+      aaa.next(1);
+      aaa.next(2); // 这里执行 yield后面的那半段, 所以a的值为2
+
+      
+      function *Show2(num1,num2) {
+        console.log(`${num1}, ${num2}`); // 3,4
+
+        let a = yield;
+
+        console.log(a) // 2
+      }
+      let aaa2 = Show2(3,4);
+      aaa2.next(1);
+      aaa2.next(2);
+
+      // async await 异步
+      function Func1 (x) {
+        return new Promise(resolve => {
+          setTimeout(() => {
+            resolve(x);
+          }, 2000);
+        });
+      }
+      async function Func2() {
+        var aaa3 = await Func1 ("hello world");
+        console.log(aaa3);  // hello world
+      }
+      Func2();
+
+    </script>
+  </body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+      <title></title>
+  </head>
+  <body>
+    <script>
+
+      // 字符串重复
+      console.log("Hello,".repeat(2));  // "Hello,Hello,"
+
+      // 模板字符串
+      let title = '标题';
+      let content = '内容';
+      let str = `<div>
+        <h1>${title}</h1>
+        <p>${content}</p>
+      </div>`;
+      // <div>
+      //   <h1>标题</h1>
+      //   <p>内容</p>
+      // </div>
+      console.log(str)
+
+      // 字符串中调用函数
+      function Func() {
+        return "World";
+      }
+      let string2 = `Hello,${Func()}`;
+      console.log(string2); // Hello,World
+
+    </script>
+  </body>
+</html>

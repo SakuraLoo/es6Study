@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+      <script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+      <title></title>
+  </head>
+  <body>
+    <script>
+
+      /**
+       * Promise:
+       * 1.异步
+       * > Promise.all([$.ajax(), $.ajax()]).then(results => { // 对了 }, err => { // 错了 })
+       * 2.同步(与Promise无关)
+       * > let data = ajax_async("/banners");
+      */
+
+      // 第一钟写法
+      let p1 = new Promise((resolve,reject) => {
+        // 异步代码
+        // resolve - 成功了
+        // reject - 失败了
+        $.ajax({
+          url: "arr.json",
+          dataType: "json",
+          success(data) {
+            resolve(data)
+          },
+          error(err) {
+            reject(err)
+          }
+        })
+      })
+
+      let p2 = new Promise((resolve,reject) => {
+        $.ajax({
+          url: "arr2.json",
+          dataType: "json",
+          success(data) {
+            resolve(data)
+          },
+          error(err) {
+            reject(err)
+          }
+        })
+      })
+      Promise.all([
+        p1,p2
+      ]).then((data) => {
+        console.log(data)
+      },(err) => {
+        console.log(err)
+      })
+
+      // 第二种写法
+      function createPromise(url) {
+        return new Promise((resolve,reject) => {
+          $.ajax({
+            url,
+            dataType: "json",
+            success(data) {
+              resolve(data)
+            },
+            error(err) {
+              reject(err)
+            }
+          })
+        })
+      }
+      
+      Promise.all([
+        createPromise("arr.json"),
+        createPromise("arr2.json")
+      ]).then((data) => {
+        console.log(data)
+      },(err) => {
+        console.log(err)
+      })
+      
+      // 第三种写法
+      Promise.all([
+        $.ajax({url:"arr.json",dataType: "json"}),
+        $.ajax({url:"arr2.json",dataType: "json"})
+      ]).then((results) => {
+        let [arr,json] = results;
+        console.log(arr,json)
+      }),(err) => {
+        console.log(err)
+      }
+
+    </script>
+  </body>
+</html>

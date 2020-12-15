@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+      <title></title>
+  </head>
+  <body>
+    <script>
+
+      // 基础用法
+      class User {
+        constructor(name) {
+          this.name = name;
+        }
+        showName() {
+          console.log(this.name)
+        }
+      }
+      let person = new User("张三");
+      person.showName();
+
+      // getter/setter
+      class User1 {
+        constructor(a) {
+          this.a = a;
+        }
+        set a(a) {
+          this._a = a;
+        }
+        get a() {
+          return this._a;
+        }
+      }
+      let person1 = new User1(1);
+      console.log(person1._a)
+
+      // 继承
+      class Father {
+        test() {
+          return 0;
+        }
+        static test1() { // 静态
+          return 1;
+        }
+      }
+      class Child extends Father {
+        constructor() {
+          super();
+        }
+      }
+      let test = new Child();
+      // 1
+      // 0
+      console.log(test.test())
+
+    </script>
+  </body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+      <title></title>
+  </head>
+  <body>
+    <script>
+
+      function *Show() {
+        console.log("a");
+
+        yield;
+
+        console.log("b");
+      }
+      let aaa = Show();
+
+      aaa.next(); // 第一次走的console.log("a");
+      aaa.next(); // 第二次走的console.log("b");
+
+    </script>
+  </body>
+</html>
