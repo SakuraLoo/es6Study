@@ -1,2 +1,2 @@
 # es6Study
-初识es6
+es6基础
